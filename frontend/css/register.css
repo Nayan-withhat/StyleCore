@@ -1,0 +1,6 @@
+@import url('loginpage.css');
+
+/* Page-specific overrides for register page */
+.login-page.register-page-specific {
+    /* placeholder for register-specific tweaks */
+}

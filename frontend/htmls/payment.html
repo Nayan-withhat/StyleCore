@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Payment | StyleCore</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="stylesheet" href="../css/loginpage.css" />
+</head>
+<body>
+    <div class="card-login">
+        <h2>Payment</h2>
+        <form id="payment-form">
+            <div class="email-login">
+                <div class="login-email">
+                    <label for="amount">Amount (INR):</label>
+                    <input type="number" id="amount" name="amount" required min="1" />
+                </div>
+                <div class="login-email">
+                    <label for="note">Note:</label>
+                    <input type="text" id="note" name="note" placeholder="Order notes (optional)" />
+                </div>
+                <button type="submit" class="submit">Pay Now</button>
+            </div>
+        </form>
+        <div id="payment-message" style="color:#fff; margin-top:10px;"></div>
+    </div>
+    <script>
+        async function apiFetch(path, options={}){
+            const res = await fetch('/api' + path, {
+                method: options.method || 'GET',
+                headers: { 'Content-Type': 'application/json', ...(options.headers||{}) },
+                credentials: 'include',
+                body: options.body ? JSON.stringify(options.body) : undefined
+            });
+            const ct = res.headers.get('content-type') || '';
+            const data = ct.includes('application/json') ? await res.json() : await res.text();
+            if(!res.ok){
+                const msg = (data && data.message) ? data.message : (typeof data === 'string' ? data : 'Request failed');
+                throw new Error(msg);
+            }
+            return data;
+        }
+        function authHeaders(){
+            try { const t = localStorage.getItem('site-access-token'); if (t) return { Authorization: 'Bearer ' + t }; } catch(e){}
+            return {};
+        }
+        const form = document.getElementById('payment-form');
+        const msg = document.getElementById('payment-message');
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+            msg.textContent = 'Creating payment...';
+            const amount = Number(document.getElementById('amount').value);
+            const note = document.getElementById('note').value.trim();
+            try{
+                const result = await apiFetch('/payments/create',{ method:'POST', headers: authHeaders(), body:{ amount, note, currency: 'INR' }});
+                msg.textContent = 'Payment initialized.';
+                if (result && result.redirectUrl) {
+                    window.location.href = result.redirectUrl;
+                }
+            }catch(err){
+                msg.textContent = 'Payment failed: ' + err.message;
+            }
+        });
+    </script>
+    </body>
+    </html>
+    
+

@@ -1,0 +1,14 @@
+{
+  "c_1763657401561_mjiusq": {
+    "items": [
+      {
+        "id": "p_1763742431016",
+        "name": "Highlander Men Green Harry Potter Printed Varsity Jacket (Size: S)",
+        "price": 2699,
+        "image": "http://localhost:5000/product/jacket/imges/jacktes/HWJK000001_1.webp",
+        "quantity": 1
+      }
+    ],
+    "total": 2699
+  }
+}

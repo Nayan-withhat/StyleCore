@@ -1,0 +1,328 @@
+/* Styles for loginpage.html */
+:root {
+    --bg: #f7f7f9;
+    --card: #ffffff;
+    --accent: #4CAF50;
+    --muted: #6b7280;
+    --radius: 10px;
+    --max-width: 1100px;
+}
+
+html,
+body {
+    min-height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #111;
+    background: var(--bg);
+}
+
+/* Webkit browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+/* If the page is a standalone auth card (register/address),
+   ensure the whole page scrolls and show a visible scrollbar */
+body:has(> .card-login) {
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Visible scrollbar for standalone auth pages (modern browsers) */
+body:has(> .card-login)::-webkit-scrollbar {
+    width: 10px;
+}
+body:has(> .card-login)::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+}
+
+/* Fallback class for browsers that don't support :has() */
+body.auth-fullpage {
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+body.auth-fullpage::-webkit-scrollbar {
+    width: 10px;
+}
+body.auth-fullpage::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+}
+
+/* Note: root-level overflow is controlled via JS on auth pages so other pages can scroll normally. */
+
+.login-page {
+    /* height: calc(100vh - 72px); */
+    /* Use page-level scrolling (body/html) so both panels scroll together */
+    min-height: calc(100vh - 72px);
+    overflow: visible;
+    /* margin: 36px auto; */
+    padding: 18px 0;
+}
+
+.login-page {
+    /* max-width: var(--max-width); */
+    width: 100%;
+    display: flex;
+    gap: 0;
+    box-sizing: border-box;
+}
+
+/* Visual swap: keep HTML order but render right-side on the left and left-side on the right */
+.left-side {
+    order: 1;
+    flex: 1;
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.right-side {
+    order: 2;
+    flex: 1;
+    background: #000;
+    color: #fff;
+    /* border-radius: var(--radius); */
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06)
+}
+
+/* small visual tweaks when panels are flush */
+.login-page>.left-side,
+.login-page>.right-side {
+    border-radius: var(--radius);
+}
+
+.name-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px
+}
+
+.name-logo h2 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 0.4px
+}
+
+.name-logo img {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+#about-website p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6
+}
+
+.card-login {
+    width: 100%;
+    max-width: 420px;
+    /* Let the page scroll instead of the card */
+}
+
+/* hide signOut button by default */
+#signOutBtn {
+    display: none !important
+}
+
+/* Make standalone card pages (register/address) dark to match right-side */
+body>.card-login {
+    background: #000;
+    color: #fff;
+    /* Let the page scroll instead of the standalone card */
+}
+
+.card-login h2 {
+    margin: 0 0 18px 0;
+    font-size: 22px
+}
+
+.login-with-google-apple {
+    display: flex;
+    gap: 10px;
+    flex-direction: column
+}
+
+.google-btn,
+.apple-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #e6e6e9;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 600
+}
+
+.google-btn i,
+.apple-btn i {
+    font-size: 18px
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 18px 0
+}
+
+.email-login h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px
+}
+
+.login-email {
+    margin-bottom: 12px
+}
+
+.login-email label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px
+}
+
+.login-email input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e6e6e9;
+    box-sizing: border-box
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.password-wrapper input {
+    flex: 1
+}
+
+.toggle-password {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 6px
+}
+
+.forget {
+    margin: 8px 0
+}
+
+.forget a {
+    color: var(--muted);
+    font-size: 13px
+}
+
+.submit {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.register {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--muted)
+}
+
+#login-message {
+    margin-top: 8px;
+    font-weight: 600
+}
+
+/* Forgot modal basics */
+#forgotPasswordModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center
+}
+
+#forgotPasswordModal>div {
+    background: #fff;
+    padding: 22px;
+    border-radius: 8px;
+    max-width: 420px;
+    width: 90%;
+    box-sizing: border-box
+}
+
+@media (max-width:900px) {
+    .login-page {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%
+    }
+
+    /* keep natural order on narrow screens */
+    .left-side {
+        order: 1
+    }
+
+    .right-side {
+        order: 2
+    }
+
+}
+
+/* Accessibility */
+button:focus,
+input:focus {
+    outline: 3px solid rgba(76, 175, 80, 0.15);
+    outline-offset: 2px
+}
+
+/* Password hint text */
+.password-hint {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #888;
+}
+
+/* Dark theme hook (not enabled by default) */
+body.dark .left-side,
+body.dark .right-side {
+    background: #0b1220;
+    color: #e6eef8
+}
+
+body.dark .card-login h2 {
+    color: #fff
+}

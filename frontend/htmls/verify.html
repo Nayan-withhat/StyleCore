@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Verify Mobile | StyleCore</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="stylesheet" href="../css/loginpage.css" />
+</head>
+<body>
+    <div class="card-login">
+        <h2>Verify your mobile number</h2>
+        <form id="send-otp-form">
+            <div class="email-login">
+                <div class="login-email">
+                    <label for="phone">Mobile:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91XXXXXXXXXX" required />
+                </div>
+                <button type="submit" class="submit">Send OTP</button>
+            </div>
+        </form>
+        <form id="verify-otp-form" style="margin-top:12px; display:none;">
+            <div class="email-login">
+                <div class="login-email">
+                    <label for="otp">OTP:</label>
+                    <input type="text" id="otp" name="otp" required />
+                </div>
+                <button type="submit" class="submit">Verify</button>
+            </div>
+        </form>
+        <div id="verify-message" style="color:#fff; margin-top:10px;"></div>
+    </div>
+    <script src="../js/verify.js"></script>
+</body>
+</html>
+
+

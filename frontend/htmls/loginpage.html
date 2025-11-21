@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Charset & Responsive -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Login | StyleCore</title>
+
+    <meta name="description"
+        content="Login to your StyleCore account to track orders, manage profile, and access exclusive offers. Secure login powered by AlphaLeo." />
+
+    <meta name="keywords"
+        content="stylecore login, alpha leo login, account login, customer login, sign in stylecore" />
+
+    <meta name="author" content="HOUSE OF ALPHA LLP" />
+
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+    <!-- OG -->
+    <meta property="og:title" content="Login | StyleCore">
+    <meta property="og:description"
+        content="Access your StyleCore account securely and manage your shopping experience.">
+    <meta property="og:image" content="https://yourdomain.com/assets/auth-preview.jpg">
+    <meta property="og:url" content="https://yourdomain.com/login">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Login | StyleCore">
+    <meta name="twitter:description" content="Login to your StyleCore account to track orders and manage your profile.">
+    <meta name="twitter:image" content="https://yourdomain.com/assets/auth-preview.jpg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://yourdomain.com/login" />
+
+    <meta name="theme-color" content="#111827" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Use the compat SDK so firebase.auth() style works easily -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="right-side">
+            <div class="name-logo">
+                <h2> StyleCore</h2>
+                <img src="../assets/logo.png" alt="StyleCore Logo">
+            </div>
+            <div id="about-website">
+                <p>Welcome to StyleCore - your place for good quality products at the right price. We try to keep everything fast and easy, from delivery to secure payments. Our aim is to give you trusted items, simple returns, and friendly support so your shopping experience stays smooth and stress-free. Thanks for being here with us!</p>
+            </div>
+        </div>
+        <div class="left-side">
+            <div class="card-login">
+                <h2>Login to Your StyleCore Account</h2>
+                <form id="login-form">
+                    <div class="login-with-google-apple">
+                        <button type="button" class="google-btn" id="googleBtn">
+                            <i class="fa-brands fa-google"></i>
+                            Continue with Google
+                        </button>
+
+                        <button type="button" class="apple-btn" id="appleBtn">
+                            <i class="fa-brands fa-apple"></i>
+                            Continue with Apple
+                        </button>
+                        <button id="signOutBtn">...</button>
+                    </div>
+                    <hr>
+                    <div class="email-login">
+                        <h2>Login with email</h2>
+                        <div class="login-email">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="demo@stylecore.com" required>
+                        </div>
+                        <div class="login-email">
+                            <label for="password">Password:</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" name="password" placeholder="password123" required>
+                                <button type="button" id="togglePassword" class="toggle-password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="forget">
+                            <a href="#" id="forgotPasswordLink"
+                                style="font-size: 12px; color: #000000; margin-top: 5px; display: inline-block;">Forgot
+                                Password?</a>
+                        </div>
+                        <button type="submit" class="submit">Login</button>
+                    </div>
+                    <div class="register">
+                        <p>Don't have an account? <a href="register.html">Register here</a></p>
+                    </div>
+                </form>
+                <div id="login-message" style="color:#000000; margin-top:10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="card-login">
+        <h2>Login to Your StyleCore Account</h2>
+        <form id="login-form">
+            <div class="login-with-google-apple">
+                <button type="button" class="google-btn" id="googleBtn">
+                    <i class="fa-brands fa-google"></i>
+                    Continue with Google
+                </button>
+
+                <button type="button" class="apple-btn" id="appleBtn">
+                    <i class="fa-brands fa-apple"></i>
+                    Continue with Apple
+                </button>
+                <button id="signOutBtn">...</button>
+            </div>
+
+            <hr>
+
+            <div class="email-login">
+                <h2>Login with email</h2>
+                <div class="login-email">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="demo@stylecore.com" required>
+                </div>
+                <div class="login-email">
+                    <label for="password">Password:</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="password123" required>
+                        <button type="button" id="togglePassword" class="toggle-password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="forget">
+                    <a href="#" id="forgotPasswordLink"
+                        style="font-size: 12px; color: #4CAF50; margin-top: 5px; display: inline-block;">Forgot
+                        Password?</a>
+                </div>
+                <button type="submit" class="submit">Login</button>
+            </div>
+
+        </form>
+        <div id="login-message" style="color:#fff; margin-top:10px;"></div>
+        <p>Don't have an account? <a href="/htmls/register.html">Register here</a></p>
+    </div> -->
+
+    <!-- Forgot Password Modal
+    <div id="forgotPasswordModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div
+            style="background:#1a1a1a; padding:30px; border-radius:10px; width:90%; max-width:400px; border:1px solid #333;">
+            <h3 style="color:#fff; margin-bottom:20px;">Reset Password</h3>
+            <form id="forgot-password-form">
+                <div style="margin-bottom:15px;">
+                    <label for="reset-email" style="color:#ccc; display:block; margin-bottom:5px;">Email:</label>
+                    <input type="email" id="reset-email" placeholder="Enter your email" required
+                        style="width:100%; padding:10px; border-radius:5px; border:1px solid #444; background:#222; color:#fff; box-sizing:border-box;">
+                </div>
+                <button type="submit"
+                    style="width:100%; padding:10px; background:#4CAF50; color:#fff; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">Send
+                    Reset Link</button>
+            </form>
+            <button id="closeModal" type="button"
+                style="width:100%; padding:10px; margin-top:10px; background:#555; color:#fff; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
+            <div id="forgot-password-message" style="color:#fff; margin-top:10px; text-align:center;"></div>
+        </div>
+    </div>  -->
+    <script type="module" src="../js/google-apple-login.js"></script>
+    <script src="../js/toast.js"></script>
+    <script src="../js/loginpage.js"></script>
+</body>
+
+</html>

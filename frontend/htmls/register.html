@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Register | StyleCore</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="stylesheet" href="../css/register.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Firebase (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+    <div class="login-page register-page">
+        <div class="right-side">
+            <div class="name-logo">
+                <h2> StyleCore</h2>
+                <img src="../imgs/12.webp" alt="StyleCore Logo">
+            </div>
+            <div id="about-website">
+                <p>Welcome to StyleCore - your place for good quality products at the right price. We try to keep
+                    everything fast and easy, from delivery to secure payments. Our aim is to give you trusted items,
+                    simple returns, and friendly support so your shopping experience stays smooth and stress-free.
+                    Thanks for being here with us!</p>
+            </div>
+        </div>
+        <div class="left-side">
+            <div class="card-login">
+                <h2>Create Your StyleCore Account</h2>
+                <div class="login-with-google-apple">
+                    <button type="button" class="google-btn" onclick="googleLogin()">
+                        <i class="fa-brands fa-google"></i>
+                        Continue with Google
+                    </button>
+
+                    <button type="button" class="apple-btn" onclick="appleLogin()">
+                        <i class="fa-brands fa-apple"></i>
+                        Continue with Apple
+                    </button>
+
+                    <div id="msg"></div>
+                </div>
+                <hr>
+                <form id="register-form" class="email-login">
+                    <h2>Register with email</h2>
+                    <div class="login-email">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required />
+                    </div>
+                    <div class="login-email">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone" required />
+                        <div id="phone-hint" class="password-hint" aria-live="polite"></div>
+                    </div>
+                    <div class="login-email">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required />
+                        <div id="email-hint" class="password-hint" aria-live="polite"></div>
+                    </div>
+                    <div class="login-email">
+                        <label for="password">Password:</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" required autocomplete="new-password" />
+                        </div>
+                        <div id="password-hint" class="password-hint" aria-live="polite"></div>
+                    </div>
+                    <div class="login-email">
+                        <label for="confirm-password">Confirm Password:</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password" />
+                        </div>
+                        <div id="confirm-hint" class="password-hint" aria-live="polite"></div>
+                    </div>
+                    <button type="submit" class="submit">Create Account</button>
+                    <div class="register-message"></div>
+                </form>
+                <div id="register-message" style="color:#fff; margin-top:10px;"></div>
+                <p>Already have an account? <a href="loginpage.html">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/toast.js"></script>
+    <script src="../js/register.js"></script>
+    <script>document.body.classList.add('auth-fullpage');</script>
+</body>
+
+</html>

@@ -1,0 +1,1405 @@
+/* main.css — styles for frontend/main.html */
+:root {
+    --bg: #f9fafb;
+    /* page background */
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --accent: #2c2c2c;
+    --glass: rgba(255, 255, 255, 0.6);
+    --nav-height: 64px;
+    --radius: 8px;
+    --transition: 240ms ease;
+    --border-bottom: 1px solid rgba(255, 247, 0, 0.04);
+    --color: #fff700;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* NAVIGATION - mobile first */
+nav {
+    width: 100%
+}
+
+span {
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* --- Provided CSS with minor structural fixes --- */
+
+/* --- Provided CSS with minor structural fixes --- */
+
+.mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    background: transparent;
+    /* Added max-width and margin for presentation in a full view */
+    max-width: 100%;
+    margin: auto;
+}
+
+.mobile-nav .menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.mobile-nav .menu .menu-icons {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+
+.mobile-nav .menu .menu-icons i {
+    position: absolute;
+    font-size: 18px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-nav .menu .menu-close {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+.mobile-nav .menu .menu-open {
+    opacity: 1;
+}
+
+.mobile-nav .menu.active .menu-close {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+.mobile-nav .menu.active .menu-open {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+.mobile-nav .menu span {
+    font-weight: 600;
+}
+
+.mobile-nav .menu .menu-dropdown {
+    position: fixed;
+    inset: 0;
+    background: #00000000;
+    /* This background provides the default dark overlay */
+    display: none;
+    z-index: 1200;
+}
+
+.mobile-nav .menu .menu-dropdown.open {
+    display: block;
+}
+
+.mobile-nav .menu .menu-dropdown a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    position: relative;
+    left: 8px;
+}
+
+/* Menu background overlay (this selector appears redundant given the parent background style above, but keeping it as provided) */
+.menu-dropdown::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgb(255, 255, 255);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.menu-dropdown.open::before {
+    opacity: 1;
+}
+
+/* Renamed the '.panel' class to '.menu-wrapper' based on the provided HTML structure */
+.mobile-nav .menu .menu-dropdown .menu-wrapper {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 86%;
+    background: var(--card);
+    box-shadow: 8px 0 32px rgba(2, 6, 23, 0.08);
+    transform: translateX(-18px);
+    /* opacity: 0; */
+    transition: transform var(--transition, 0.3s) ease, opacity var(--transition, 0.3s) ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* width: 100%; */
+    
+    /* Changed 'overflow: auto' to 'overflow-y: auto' for better vertical scrolling */
+}
+
+/* The 'open' class needs styles applied to the wrapper to bring it into view */
+.menu-dropdown.open .menu-wrapper {
+    transform: translateX(0);
+    /* Final state: fully on-screen */
+    opacity: 1;
+}
+
+/* --- General List/Link Styling --- */
+.menu-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+}
+
+.menu-dropdown li {
+    padding: 8px 0;
+}
+
+.menu-dropdown a {
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.menu-dropdown a svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s ease;
+}
+
+.menu-dropdown li:hover>a svg {
+    transform: rotate(-90deg);
+}
+
+/* --- Center Section Styling --- */
+.center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.center img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.center span {
+    font-weight: 700;
+}
+
+/* --- Right Side Section Styling --- */
+.rightside {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rightside a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    /* Added this line to make the hover effect work relative to the anchor */
+    display: block;
+}
+
+.rightside ul {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--card);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    display: none;
+    min-width: 200px;
+    z-index: 60;
+}
+
+/* This is a CSS-only hover effect to show the dropdown (requires JavaScript for a proper mobile implementation/toggle) */
+.rightside a:hover>ul {
+    display: block;
+}
+
+/* --- New Styles added for unstyled HTML elements --- */
+
+/* Menu Header within the dropdown panel */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    /* Added padding */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Styles for light/dark mode containers within links */
+.darkmod,
+.lightmod {
+    display: inline-block;
+    /* Adjust as needed based on current theme */
+}
+
+/* By default, one is visible and one is hidden (requires JS/theme toggle logic) */
+/* .lightmod { display: none; } */
+
+
+/* --- Center Section Styling --- */
+.center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.center img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.center span {
+    font-weight: 700;
+}
+
+/* --- Right Side Section Styling --- */
+.rightside {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rightside a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    /* Added this line to make the hover effect work relative to the anchor */
+    display: block;
+}
+
+.rightside ul {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--card);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    display: none;
+    min-width: 200px;
+    z-index: 60;
+}
+
+/* This is a CSS-only hover effect to show the dropdown (requires JavaScript for a proper mobile implementation/toggle) */
+.rightside a:hover>ul {
+    display: block;
+}
+
+/* --- New Styles added for unstyled HTML elements --- */
+
+/* Menu Header within the dropdown panel */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    /* Added padding */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Styles for light/dark mode containers within links */
+.darkmod,
+.lightmod {
+    display: inline-block;
+    /* Adjust as needed based on current theme */
+}
+
+/* By default, one is visible and one is hidden (requires JS/theme toggle logic) */
+/* .lightmod { display: none; } */
+
+
+/* Desktop nav */
+.desktop-nav {
+    display: none;
+    padding: 14px 32px;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border-bottom: var(--border-bottom)
+}
+
+.desktop-nav .pfp-name {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.desktop-nav .pfp-name img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain
+}
+
+.desktop-nav .products-links ul {
+    display: flex;
+    gap: 18px;
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.desktop-nav .products-links li {
+    position: relative
+}
+
+.desktop-nav .products-links a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 8px 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+}
+
+/* Text-only animated underline: apply the pseudo-element to the inner
+   <span class="link-text"> so the underline matches only the text glyphs
+   (not icons or extra anchor padding). Visible on desktop-only nav. */
+.desktop-nav .products-links a .link-text {
+    position: relative;
+    display: inline-block;
+}
+
+/* Restore nav text size/weight to the previous (desktop) appearance.
+   A global `span { font-size: 1.3rem }` was making these too large, so
+   explicitly set a sensible nav text size/weight here. */
+.desktop-nav .products-links a .link-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0;
+}
+
+.desktop-nav .products-links a .link-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color);
+    bottom: -4px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+}
+
+.desktop-nav .products-links a:hover .link-text::after {
+    transform: scaleX(1);
+}
+
+.desktop-nav .products-links a svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s ease;
+}
+
+.desktop-nav .products-links li:hover>a svg {
+    transform: rotate(-90deg);
+}
+
+.desktop-nav .products-links li ul {
+    position: absolute;
+    top: calc(var(--nav-height) - 20px);
+    left: 100%;
+    background: var(--card);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    display: none;
+    min-width: 200px;
+    z-index: 60;
+    border-bottom: var(--border-bottom)
+}
+
+.desktop-nav .products-links li:hover>ul {
+    display: block
+}
+
+.desktop-nav .other ul li ul li {
+    padding: 6px 8px;
+    position: relative;
+}
+
+.desktop-nav .other ul li ul li a .link-text {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0;
+}
+
+.desktop-nav .other ul li ul li a .link-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color);
+    bottom: -4px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+}
+
+.desktop-nav .other ul li ul li a:hover .link-text::after {
+    transform: scaleX(1);
+}
+
+.desktop-nav .other ul {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.desktop-nav .other ul li ul {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 0;
+    background: var(--card);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    text-decoration: none;
+    color: var(--text);
+    display: none;
+    min-width: 200px;
+    z-index: 60
+}
+
+.desktop-nav .other ul li:hover>ul {
+    display: block
+}
+
+/* Profile dropdown (used in mobile and desktop) */
+.login-register-before,
+.login-register-after {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.login-register-before li a,
+.login-register-after li a {
+    padding: 6px 0;
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+}
+
+.desktop-nav .login-register-before li a .link-text::after,
+.desktop-nav .login-register-after li a .link-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color);
+    bottom: -4px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+}
+
+/* Fallback: ensure any other .link-text inside .desktop-nav gets the same underline
+   and positioning, so newly added links are covered without extra edits. */
+.desktop-nav .link-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color);
+    bottom: -4px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+}
+
+.desktop-nav a:hover .link-text::after {
+    transform: scaleX(1);
+}
+
+.desktop-nav .login-register-before li a .link-text,
+.desktop-nav .login-register-after li a .link-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0;
+}
+
+.desktop-nav .login-register-before li a:hover .link-text::after,
+.desktop-nav .login-register-after li a:hover .link-text::after {
+    transform: scaleX(1);
+}
+
+.login-register-after {
+    display: none
+}
+
+.fix {
+    display: flex !important;
+    gap: 5px;
+}
+
+/* Theme toggle icons */
+.darkmod,
+.lightmod {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.darkmod i,
+.lightmod i {
+    font-size: 16px;
+}
+
+body:not(.dark) .lightmod {
+    display: none;
+    overflow-x: hidden;
+}
+
+body.dark .darkmod {
+    display: none;
+    overflow-x: hidden;
+}
+
+/* Improved dropdown behaviors */
+.desktop-nav .other li {
+    position: relative;
+}
+
+.desktop-nav .other li ul {
+    min-width: 180px;
+    padding: 8px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    background: var(--card);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    transition: all 0.2s ease-out;
+}
+
+.desktop-nav .other li:hover>ul {
+    display: block;
+}
+
+/* Mobile dropdown improvements */
+.mobile-nav .rightside>a {
+    position: relative;
+}
+
+.mobile-nav .rightside ul {
+    min-width: 180px;
+    padding: 8px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    background: var(--card);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    transition: all 0.2s ease-out;
+}
+
+/* Main / Footer placeholders */
+main {
+    /* padding: 20px; */
+    border-bottom: var(--border-bottom)
+}
+
+footer {
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: var(--border-bottom)
+}
+
+/* Dark mode */
+body.dark {
+    background: #3C3D37;
+    color: #ffffff;
+    --card: #3C3D37;
+    --text: #ffffff;
+    overflow-x: hidden;
+}
+
+body.dark .mobile-nav,
+body.dark .desktop-nav {
+    background: transparent;
+    overflow-x: hidden;
+}
+
+body.dark .menu-dropdown .top,
+body.dark .menu-dropdown .bottom {
+    background: var(--card);
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .menu-dropdown a {
+    color: var(--text);
+    
+}
+
+body.dark .menu-dropdown::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Light mode */
+body:not(.dark) {
+    --card: #ffffff;
+    --text: #000000;
+}
+
+body:not(.dark) .menu-dropdown .top,
+body:not(.dark) .menu-dropdown .bottom {
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu transitions */
+.menu-dropdown .top,
+.menu-dropdown .bottom {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pro{
+    font-size: 0.9rem;
+}
+/* Menu specific dark mode styles */
+body.dark .menu-icons i {
+    color: #ffffff !important;
+}
+
+body.dark .menu span {
+    color: #ffffff;
+}
+
+body.dark .menu-dropdown {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Menu specific light mode styles */
+body:not(.dark) .menu-icons i {
+    color: #000000 !important;
+}
+
+body:not(.dark) .menu span {
+    color: #000000;
+}
+
+body:not(.dark) .menu-dropdown {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+body.dark a {
+    color: #ffffff;
+}
+
+body.dark i {
+    color: #ffffff !important;
+}
+
+body.dark .products-links a svg,
+body.dark .menu-dropdown a svg {
+    color: #ffffff;
+}
+
+body.dark .cart-panel,
+body.dark .search-bar,
+body.dark .desktop-nav .products-links li ul,
+body.dark .desktop-nav .other li ul,
+body.dark .mobile-nav .rightside ul {
+    background: #3C3D37;
+    color: #ffffff;
+}
+
+/* Light mode specific */
+body:not(.dark) i {
+    color: #000000 !important;
+}
+
+body:not(.dark) .products-links a svg,
+body:not(.dark) .menu-dropdown a svg {
+    color: #000000;
+}
+
+/* Small utilities and responsive */
+.hidden {
+    display: none !important
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none
+}
+
+/* Small screens (mobile) */
+@media(max-width:899px) {
+    .desktop-nav {
+        display: none
+    }
+
+    .mobile-nav {
+        display: flex
+    }
+
+    .mobile-main {
+        display: block
+    }
+
+    .desktop-main {
+        display: none
+    }
+}
+
+/* Responsive product grid: 2 columns on small screens, auto-fit on larger */
+@media (max-width: 520px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .card .img {
+        height: 240px;
+    }
+}
+
+@media (max-width: 360px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .card .img { height: 220px; }
+}
+
+/* Large screens (desktop) */
+@media(min-width:900px) {
+    .mobile-nav {
+        display: none
+    }
+
+    .desktop-nav {
+        display: flex
+    }
+
+    .mobile-main {
+        display: none
+    }
+
+    .desktop-main {
+        display: block
+    }
+}
+
+/* Focus states for accessibility */
+a:focus {
+    outline: 3px solid rgba(17, 24, 39, 0.08);
+    outline-offset: 2px
+}
+
+/* Tiny helpers for icons in nav */
+.mobile-nav .rightside a,
+.desktop-nav .other a {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+/* Search bar */
+.search-bar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--card);
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.2s ease-out;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius);
+    font-size: 16px;
+}
+
+.search-bar .search-close {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+/* Cart styles */
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.cart-panel {
+    background: var(--card);
+    width: 400px;
+    max-width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    animation: slideLeft 0.3s ease-out;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.cart-item .item-details {
+    flex: 1;
+}
+
+.cart-footer {
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.checkout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Loading state */
+body.loading::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+    overflow-x: hidden;
+}
+
+.loading .desktop-nav::before,
+.loading .mobile-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    animation: loading 1s infinite;
+}
+
+/* Error toast */
+.error-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ef4444;
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes loading {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Cart icon badge */
+a[href="#cart"] i {
+    position: relative;
+}
+
+a[href="#cart"] i[data-count]::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--accent);
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+}
+
+/* End of nav */
+
+/* start of main content */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.main-slider {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide img.desktop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slide img.mobile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+/* Mobile Image Switch */
+@media(max-width: 768px){
+  .slide img.desktop { display: none; }
+  .slide img.mobile { display: block; }
+}
+
+/* Dark overlay same as sample website */
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+}
+.flickity-page-dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 8px;
+  background: #333;
+  border-radius: 50%;
+  opacity: .25;
+  cursor: pointer;
+}
+.flickity-page-dots {
+  position: absolute;
+  width: 100%;
+  bottom: -50px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  line-height: 1;
+}
+
+.flickity-page-dots .dot {
+    background: rgba(255,255,255,0.6);
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+}
+
+.flickity-page-dots .dot.is-selected {
+    background: #000000;
+    transform: scale(1);
+}
+
+.card {
+    /* display: flex; */
+    color: #000000;
+    border: 3px solid #00000092;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+}
+/* fade transition stronger */
+.flickity-slider .slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;  /* smooth fade */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.flickity-slider .is-selected {
+    opacity: 1;
+    z-index: 2;
+}
+
+.flickity-slider .slide:not(.is-selected) {
+    z-index: 1;
+}
+
+.main-drop {
+    /* margin: 20px auto; */
+    padding: 40px;
+    max-width: 800px;
+    color: #000000;
+    text-align: start;
+}
+
+.main-drop .text h1 {
+    font-size: 1.8rem;
+    margin: 0 0 1px 0;
+    font-weight: 800;
+}
+
+.main-drop .text p {
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
+
+.main-drop .button {
+    margin-top: 40px;
+    color: #000000;
+}
+
+.main-drop .button button
+ {
+    font-weight: 600;
+    background-color: #00000000;
+    font-size: 1rem;
+    width: auto;
+    margin: 0px 2px;
+    /* text-decoration: underline; */
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border: 1px solid #00000000;
+}
+
+.main-drop .button button:hover {
+    color: #dadada;
+    transition: all 0.5s ease;
+}
+
+.main-drop .button button.active {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+
+    
+.main-drop .button span {
+    font-weight: 500;
+    font-size: 1.2rem;
+    width: auto;
+}
+
+/* Product grid styles */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+    color:#000000;
+}
+
+.card {
+    /* display: flex; */
+    color: #000000;
+    border: 3px solid #00000092;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    /* padding: 10px; */
+    
+}
+
+.card .img {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+}
+
+.card .img img {
+    position: absolute;
+    top: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 180ms ease-in-out, transform 220ms ease;
+}
+
+/* Show first image by default, second image fades in on hover */
+.card .img img:first-child { opacity: 1; z-index: 2; }
+.card .img img:last-child  { opacity: 0; z-index: 1; }
+.card .img:hover img:first-child { opacity: 0; transform: scale(1.02); }
+.card .img:hover img:last-child  { opacity: 1; transform: scale(1); }
+
+.card .info {
+    padding: 12px 10px;
+    text-align: start;
+}
+
+/* Clamp product description/title to 2 lines to avoid layout break */
+.card .info p {
+    margin: 6px 0 8px;
+    line-height: 1.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+/* Card lift on hover and touch (active) */
+.card {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    will-change: transform;
+}
+
+.card:hover,
+.card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(2,6,23,0.12);
+}
+
+/* For touch devices - slight lift on active/tap */
+.card:active {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(2,6,23,0.12);
+}
+
+.card .info .mone {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.info .mone h4 {
+    margin: 1px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.info .mone h5 {
+    margin: 5px 3px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: line-through;
+}
+
+.info .more h6 {
+    color : #ff0000;
+}
+
+.card .info .quick-link {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    margin: 0 0 8px;
+    background: rgba(17, 24, 39, 0.95);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.18);
+    transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+    opacity: 1;
+}
+
+.card .info .quick-link:active { transform: translateY(1px); }
+
+/* Make sure the quick-link looks good on small screens */
+@media (max-width: 520px) {
+    .card .info .quick-link { font-size: 13px; padding: 6px 10px; }
+}
+
+.card .btn1  {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    margin: 0 0 8px;
+    background: rgba(17, 24, 39, 0.95);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.18);
+    transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+    opacity: 1;
+    cursor: pointer;
+}
+

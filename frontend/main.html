@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Charset & Responsive Design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page Title -->
+    <title>StyleCore – Premium Men's Fashion & Lifestyle Essentials</title>
+
+    <!-- Meta Description (SEO) -->
+    <meta name="description"
+        content="Explore StyleCore by AlphaLeo – the latest in men's fashion. Shop premium jackets, t-shirts, and lifestyle essentials. Free shipping & exclusive new arrivals from HOUSE OF ALPHA LLP.">
+
+    <!-- Meta Keywords -->
+    <meta name="keywords"
+        content="men's fashion, stylecore, alpha leo, jackets, streetwear, lifestyle essentials, premium wear, indian brand, alpha male fashion, mens clothing">
+
+    <!-- Author -->
+    <meta name="author" content="HOUSE OF ALPHA LLP">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- Main stylesheet (plain CSS) -->
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph (For Facebook, WhatsApp, etc.) -->
+    <meta property="og:title" content="StyleCore – Premium Men's Fashion & Lifestyle Essentials | AlphaLeo">
+    <meta property="og:description"
+        content="Shop premium men's fashion essentials at StyleCore by AlphaLeo. Free shipping & exclusive new arrivals.">
+    <meta property="og:image" content="https://yourdomain.com/assets/preview-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:type" content="website">
+
+    <!-- Theme Color (for browsers / mobile) -->
+    <meta name="theme-color" content="#111827">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Schema Markup (Basic JSON-LD for Brand) -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StyleCore by AlphaLeo",
+    "url": "https://yourdomain.com/",
+    "logo": "https://yourdomain.com/assets/logo.png",
+    "sameAs": [
+      "https://www.instagram.com/stylecore",
+      "https://www.facebook.com/stylecore",
+      "https://www.youtube.com/@stylecore"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-9000000000",
+      "contactType": "customer service",
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi"]
+    }
+  }
+</script>
+
+    <!-- Custom Styles (optional font + color tweaks) -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            scroll-behavior: smooth;
+        }
+
+        .owner-panel-link {
+            display: none;
+        }
+
+        .owner-panel-link.visible {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="mobile-nav">
+            <div class="menu">
+                <div class="menu-icons">
+                    <i class="fa-solid fa-bars menu-open"></i>
+                    <i class="fa-solid fa-x menu-close"></i>
+                </div>
+                <span>Menu</span>
+                <div class="menu-dropdown">
+                    <div class="menu-wrapper">
+                        <div class="menu-header">
+                            <span>Menu</span>
+                            <button class="close-menu">
+                                <i class="fa-solid fa-x"></i>
+                            </button>
+                        </div>
+                        <div class="menu-content">
+                            <div class="top">
+                                <ul>
+                                    <li><a href="/#new-arrivals">New Arrivals</a></li>
+                                    <li><a href="/?category=mens">Man</a></li>
+                                    <li><a href="/?category=womens">Woman</a></li>
+                                    <li><a href="/?sale=true">Winter Sale</a></li>
+                                    <li><a href="/?tier=premium">Premium</a></li>
+                                </ul>
+                            </div>
+                            <div class="bottom">
+                                <ul>
+                                    <li>
+                                        <a href="/htmls/profile.html" id="profileLink" style="display:none;">Profile</a>
+                                        <a href="#profile" id="profileNotLoggedIn">Profile</a>
+                                        <ul>
+                                            <div class="login-register-before" id="loginRegisterBefore">
+                                                <li><a href="/htmls/loginpage.html">Login</a></li>
+                                                <li><a href="/htmls/register.html">Register</a></li>
+                                            </div>
+                                            <div class="login-register-after" style="display: none;"
+                                                id="loginRegisterAfter">
+                                                <li id="userGreetingMobile"
+                                                    style="padding: 10px; text-align: center; font-weight: 600; border-bottom: 1px solid #ddd;">
+                                                </li>
+                                                <li><a href="/htmls/profile.html">Profile</a></li>
+                                                <li><a href="/htmls/profile.html#orders">Orders</a></li>
+                                                <li><a href="/htmls/profile.html#addresses">Addresses</a></li>
+                                                <li class="owner-panel-link"><a href="htmls/ownerpanel.html">Owner
+                                                        Panel</a></li>
+                                                <li id="Logout"><a href="#logout">Logout</a></li>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#contact">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <img src="" alt="">
+                <span>StyleCore</span>
+            </div>
+            <div class="rightside">
+                <a href="#cart"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
+                <a href="#profile" id="profileMenuIcon"><i class="fa-solid fa-user" style="color: #000000;"></i>
+                    <ul>
+                        <div class="login-register-before" id="loginRegisterBeforeDesktop">
+                            <li><a href="/htmls/loginpage.html">Login</a></li>
+                            <li><a href="/htmls/register.html">Register</a></li>
+                        </div>
+                        <div class="login-register-after" style="display: none;" id="loginRegisterAfterDesktop">
+                            <li><a href="/htmls/profile.html">Profile</a></li>
+                            <li><a href="/htmls/profile.html#orders">Orders</a></li>
+                            <li><a href="/htmls/profile.html#addresses">Address</a></li>
+                            <li id="Logout"><a href="#logout">Logout</a></li>
+                        </div>
+                    </ul>
+                </a>
+                <a href="#dark-light">
+                    <div class="darkmod"><i class="fa-solid fa-sun" style="color: #000000;"></i></div>
+                    <div class="lightmod"><i class="fa-solid fa-moon" style="color: #000000;"></i></div>
+                </a>
+            </div>
+        </div>
+        <div class="desktop-nav">
+            <div class="pfp-name">
+                <img src="" alt="">
+                <span>StyleCore</span>
+            </div>
+            <div class="products-links">
+                <ul>
+                    <li>
+                        <a href="/#new-arrivals">
+                            <span class="link-text">New Arrivals</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M9.293 6.293a1 1 0 0 1 1.414 0L16 11.586l-5.293 5.293a1 1 0 0 1-1.414-1.414L13.586 11 9.293 6.707a1 1 0 0 1 0-1.414z" />
+                            </svg>
+                        </a>
+                        <ul>
+                            <li><a href="/?category=jackets"><span class="link-text">Jackets</span></a></li>
+                            <li><a href="/?category=joggers"><span class="link-text">Joggers</span></a></li>
+                            <li><a href="/?category=hoodies"><span class="link-text">Hoodies</span></a></li>
+                            <li><a href="/?category=coords"><span class="link-text">Winter Co-ord Set</span></a></li>
+                            <li><a href="/?category=premium"><span class="link-text">Premium</span></a></li>
+                            <li><a href="/?category=mens"><span class="link-text">MAN</span></a></li>
+                            <li><a href="/?category=womens"><span class="link-text">WOMAN</span></a></li>
+                        </ul>
+
+                    </li>
+                    <li><a href="/?category=coords"><span class="link-text">Winter Co-ord Set</span></a></li>
+                    <li>
+                        <a href="/?category=mens">
+                            <span class="link-text">Man</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M9.293 6.293a1 1 0 0 1 1.414 0L16 11.586l-5.293 5.293a1 1 0 0 1-1.414-1.414L13.586 11 9.293 6.707a1 1 0 0 1 0-1.414z" />
+                            </svg>
+                        </a>
+                        <ul>
+                            <li><a href="/?category=mens&type=jackets"><span class="link-text">Jackets</span></a></li>
+                            <li><a href="/?category=mens&type=joggers"><span class="link-text">Joggers</span></a></li>
+                            <li><a href="/?category=mens&type=hoodies"><span class="link-text">Hoodies</span></a></li>
+                            <li><a href="/?sort=new"><span class="link-text">New Arrivals</span></a></li>
+                            <li><a href="/?category=mens&type=coords"><span class="link-text">Winter Co-ord
+                                        Set</span></a></li>
+                            <li><a href="/?category=mens&sale=true"><span class="link-text">Winter Sale</span></a></li>
+                            <li><a href="/?category=mens&tier=premium"><span class="link-text">Premium</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/?category=womens">
+                            <span class="link-text">Woman</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M9.293 6.293a1 1 0 0 1 1.414 0L16 11.586l-5.293 5.293a1 1 0 0 1-1.414-1.414L13.586 11 9.293 6.707a1 1 0 0 1 0-1.414z" />
+                            </svg>
+                        </a>
+                        <ul>
+                            <li><a href="/?category=womens&type=jackets"><span class="link-text">Jackets</span></a></li>
+                            <li><a href="/?category=womens&type=joggers"><span class="link-text">Joggers</span></a></li>
+                            <li><a href="/?category=womens&type=hoodies"><span class="link-text">Hoodies</span></a></li>
+                            <li><a href="/?sort=new"><span class="link-text">New Arrivals</span></a></li>
+                            <li><a href="/?category=womens&type=coords"><span class="link-text">Winter Co-ord
+                                        Set</span></a></li>
+                            <li><a href="/?category=womens&sale=true"><span class="link-text">Winter Sale</span></a>
+                            </li>
+                            <li><a href="/?category=womens&tier=premium"><span class="link-text">Premium</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/?sale=true">
+                            <span class="link-text">Winter Sale</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M9.293 6.293a1 1 0 0 1 1.414 0L16 11.586l-5.293 5.293a1 1 0 0 1-1.414-1.414L13.586 11 9.293 6.707a1 1 0 0 1 0-1.414z" />
+                            </svg>
+                        </a>
+                        <ul>
+                            <li><a href="/?sale=true&type=jackets"><span class="link-text">Jackets</span></a></li>
+                            <li><a href="/?sale=true&type=joggers"><span class="link-text">Joggers</span></a></li>
+                            <li><a href="/?sale=true&type=hoodies"><span class="link-text">Hoodies</span></a></li>
+                            <li><a href="/?sort=new"><span class="link-text">New Arrivals</span></a></li>
+                            <li><a href="/?sale=true&type=coords"><span class="link-text">Winter Co-ord Set</span></a>
+                            </li>
+                            <li><a href="/?sale=true&category=mens"><span class="link-text">MAN</span></a></li>
+                            <li><a href="/?sale=true&category=womens"><span class="link-text">WOMAN</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/?tier=premium"><span class="link-text">Premium</span></a></li>
+                </ul>
+            </div>
+            <div class="other">
+                <ul>
+                    <li>
+                        <a href="htmls/profile.html"><i class="fa-solid fa-user" style="color: #000000;"></i></a>
+                        <ul>
+                            <div class="login-register-before">
+                                <li><a href="/htmls/loginpage.html"><span class="link-text">Login</span></a></li>
+                                <li><a href="/htmls/register.html"><span class="link-text">Register</span></a></li>
+                            </div>
+                            <div class="login-register-after" style="display: none;">
+                                <li id="userGreeting"
+                                    style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 600;">
+                                </li>
+                                <li><a href="htmls/profile.html"><span class="link-text">Profile</span></a></li>
+                                <li><a href="htmls/profile.html#orders"><span class="link-text">Orders</span></a></li>
+                                <li><a href="htmls/profile.html#addresses"><span class="link-text">Address</span></a>
+                                </li>
+                                <li class="owner-panel-link"><a href="htmls/ownerpanel.html"><span
+                                            class="link-text">Owner Panel</span></a></li>
+                                <li id="Logout"><a href="#logout"><span class="link-text">Logout</span></a></li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li><a href="#cart"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-message-middle" style="color: #000000;"></i></a></li>
+                    <li><a href="#dark-light">
+                            <div class="darkmod"><i class="fa-solid fa-sun" style="color: #000000;"></i></div>
+                            <div class="lightmod"><i class="fa-solid fa-moon" style="color: #000000;"></i></div>
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="main-slider">
+                <div class="slide">
+                    <img class="desktop" src="imgs/12.webp">
+                    <img class="mobile" src="imgs/12.webp">
+                </div>
+
+                <div class="slide">
+                    <img class="desktop" src="imgs/Can_use_this_for_coordsets_or_bottoms.webp">
+                    <img class="mobile" src="imgs/Can_use_this_for_coordsets_or_bottoms1.jpg">
+                </div>
+
+                <div class="slide">
+                    <img class="desktop" src="imgs/WhatsApp_Image_2025-02-26_at_22.11.07.webp">
+                    <img class="mobile" src="imgs/WhatsApp_Image_2025-02-26_at_22.11.07.jpg">
+                </div>
+
+                <div class="slide">
+                    <img class="desktop" src="imgs/IMG_3093.webp">
+                    <img class="mobile" src="imgs/IMG_3093.jpg">
+                </div>
+
+                <div class="slide">
+                    <img class="desktop" src="imgs/WhatsApp_Image_2025-07-15_at_11.40.33.webp">
+                    <img class="mobile" src="imgs/WhatsApp_Image_2025-07-15_at_11.40.33.jpg">
+                </div>
+            </div>
+            <div class="ads">Non Stop Savings - Extra 5% Off on Prepaid Orders</div>
+            <div class="main-drop" id="new-arrivals">
+                <div class="text">
+                    <h1>New Drops</h1>
+                    <p>Upgrade your wardrobe</p>
+                </div>
+                <div class="products" id="Products">
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HWSS000055_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HWSS000055_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>DC by Highlander</span>
+                            <p>DC by Highlander Men Joker Hooded Pullover Sweatshirt — HWSS000055</p>
+                            <div class="mone">
+                                <h4>₹ 2,199</h4>
+                                <h5>₹ 6,199.00</h5>
+                                <h6>(64%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/dc-by-highlander-men-black-joker-hooded-pullover-sweatshirt-hwss000055.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000912_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000912_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Beige Hooded Pullover Sweatshirt — HLSS000912</p>
+                            <div class="mone">
+                                <h4>₹ 899</h4>
+                                <h5>₹ 2,149.00</h5>
+                                <h6>(58%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-beige-hooded-pullover-sweatshirt-hlss000912.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000491_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000491_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Black Hooded Pullover Sweatshirt — HLSS000491</p>
+                            <div class="mone">
+                                <h4>₹ 899</h4>
+                                <h5>₹ 2,549.00</h5>
+                                <h6>(65%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-black-hooded-pullover-sweatshirt-hlss000491.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000859_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000859_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Black Hooded Pullover Sweatshirt — HLSS000859</p>
+                            <div class="mone">
+                                <h4>₹ 799</h4>
+                                <h5>₹ 2,199.00</h5>
+                                <h6>(64%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-black-hooded-pullover-sweatshirt-hlss000859.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000930_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000930_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Black Hooded Pullover Sweatshirt — HLSS000930</p>
+                            <div class="mone">
+                                <h4>₹ 699</h4>
+                                <h5>₹ 1,999.00</h5>
+                                <h6>(65%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-black-hooded-pullover-sweatshirt-hlss000930.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000620_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000620_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Blue Hooded Pullover Sweatshirt — HLSS000620</p>
+                            <div class="mone">
+                                <h4>₹ 699</h4>
+                                <h5>₹ 1,999.00</h5>
+                                <h6>(65%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-blue-hooded-pullover-sweatshirt-hlss000620.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000870_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000870_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Brown Hooded Pullover Sweatshirt — HLSS000870</p>
+                            <div class="mone">
+                                <h4>₹ 799</h4>
+                                <h5>₹ 2,199.00</h5>
+                                <h6>(64%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-brown-hooded-pullover-sweatshirt-hlss000870.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000991_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000991_3.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Brown Hooded Pullover Sweatshirt — HLSS000991</p>
+                            <div class="mone">
+                                <h4>₹ 799</h4>
+                                <h5>₹ 2,199.00</h5>
+                                <h6>(63%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-brown-hooded-pullover-sweatshirt-hlss000991.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000601_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000601_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Burgundy Hooded Pullover Sweatshirt — HLSS000601</p>
+                            <div class="mone">
+                                <h4>₹ 699</h4>
+                                <h5>₹ 1,999.00</h5>
+                                <h6>(65%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-burgundy-hooded-pullover-sweatshirt-hlss000601.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000322_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000322_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Grey Hooded Pullover Sweatshirt — HLSS000322</p>
+                            <div class="mone">
+                                <h4>₹ 599</h4>
+                                <h5>₹ 1,599.00</h5>
+                                <h6>(63%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-grey-hooded-pullover-sweatshirt-hlss000322.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000586_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000586_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men Lavender Hooded Pullover Sweatshirt — HLSS000586</p>
+                            <div class="mone">
+                                <h4>₹ 699</h4>
+                                <h5>₹ 1,999.00</h5>
+                                <h6>(64%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-lavender-hooded-pullover-sweatshirt-hlss000586.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HLSS000388_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HLSS000388_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Highlander</span>
+                            <p>Highlander Men White Hooded Pullover Sweatshirt — HLSS000388</p>
+                            <div class="mone">
+                                <h4>₹ 599</h4>
+                                <h5>₹ 1,699.00</h5>
+                                <h6>(65%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/highlander-men-white-hooded-pullover-sweatshirt-hlss000388.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HMSS000046_HMSS000046_New Folder With Items_2.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HMSS000046_HMSS000046_New Folder With Items_3.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>Marvel by Highlander</span>
+                            <p>Marvel by Highlander Men Deadpool Hooded Pullover Sweatshirt — HMSS000046</p>
+                            <div class="mone">
+                                <h4>₹ 2,099</h4>
+                                <h5>₹ 6,099.00</h5>
+                                <h6>(65%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/marvel-by-highlander-men-black-deadpool-hooded-pullover-sweatshirt-hmss000046.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HWSS000067_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HWSS000067_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>WB by Highlander</span>
+                            <p>WB by Highlander Men Rick and Morty Hooded Pullover Sweatshirt — HWSS000067</p>
+                            <div class="mone">
+                                <h4>₹ 2,199</h4>
+                                <h5>₹ 6,199.00</h5>
+                                <h6>(65%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/wb-by-highlander-men-black-rick-and-morty-hooded-pullover-sweatshirt-hwss000067.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="img">
+                            <img src="product/hooded/imges/hooded/HWSS000086_1.webp" alt="">
+                            <img src="product/hooded/imges/hooded/HWSS000086_2.webp" alt="">
+                        </div>
+                        <div class="info">
+                            <span>WB by Highlander</span>
+                            <p>Game of Thrones Hooded Pullover Sweatshirt — HWSS000086</p>
+                            <div class="mone">
+                                <h4>₹ 1,999</h4>
+                                <h5>₹ 5,599.00</h5>
+                                <h6>(64%off)</h6>
+                            </div>
+                            <a class="quick-link" href="product/hooded/wb-by-highlander-men-grey-game-of-thrones-hooded-pullover-sweatshirt-hwss000086.html">View Details</a>
+                            <button class="btn1">Add To Cart</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Jackets section inserted by automation -->
+        <div class="main-drop" id="jackets">
+            <div class="text">
+                <h1>Jackets</h1>
+                <p>Warm, stylish jackets for every season</p>
+            </div>
+            <div class="products">
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000281_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000281_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Ketch</span>
+                        <p>Ketch Men Green Solid Puffer Jacket</p>
+                        <div class="mone">
+                            <h4>₹ 999</h4>
+                            <h5>₹ 2,749.00</h5>
+                            <h6>(64%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/ketch-men-puffer-jacket-khjk000029.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000281_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000281_3.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men Black Solid Denim Jacket — HLJK000281</p>
+                        <div class="mone">
+                            <h4>₹ 999</h4>
+                            <h5>₹ 2,749.00</h5>
+                            <h6>(64%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-black-solid-denim-jacket-hljk000281.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000297_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000297_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men Blue Solid Denim Jacket — HLJK000297</p>
+                        <div class="mone">
+                            <h4>₹ 999</h4>
+                            <h5>₹ 2,899.00</h5>
+                            <h6>(66%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-blue-solid-denim-jacket-hljk000297.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK001120_HLJK001120_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK001120_HLJK001120_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men Green Solid Puffer Jacket — HLJK001120</p>
+                        <div class="mone">
+                            <h4>₹ 1,999</h4>
+                            <h5>₹ 5,749.00</h5>
+                            <h6>(64%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-green-solid-puffer-jacket-hljk001120.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000189_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000189_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men Grey Solid Denim Jacket — HLJK000189</p>
+                        <div class="mone">
+                            <h4>₹ 899</h4>
+                            <h5>₹ 2,549.00</h5>
+                            <h6>(64%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-grey-solid-denim-jacket-hljk000189.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000488_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000488_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men Grey Solid Denim Jacket — HLJK000488</p>
+                        <div class="mone">
+                            <h4>₹ 699</h4>
+                            <h5>₹ 1,849.00</h5>
+                            <h6>(62%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-grey-solid-denim-jacket-hljk000488.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK001135_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK001135_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men Grey Solid Puffer Jacket — HLJK001135</p>
+                        <div class="mone">
+                            <h4>₹ 1,999</h4>
+                            <h5>₹ 5,449.00</h5>
+                            <h6>(63%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-grey-solid-puffer-jacket-hljk001135.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000448_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000448_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men Purple Solid Denim Jacket — HLJK000448</p>
+                        <div class="mone">
+                            <h4>₹ 799</h4>
+                            <h5>₹ 2,099.00</h5>
+                            <h6>(62%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-purple-solid-denim-jacket-hljk000448.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000458_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000458_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men White Solid Denim Jacket — HLJK000458</p>
+                        <div class="mone">
+                            <h4>₹ 599</h4>
+                            <h5>₹ 1,749.00</h5>
+                            <h6>(64%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-white-solid-denim-jacket-hljk000458.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000710_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000710_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men White Solid Puffer Jacket — HLJK000710</p>
+                        <div class="mone">
+                            <h4>₹ 999</h4>
+                            <h5>₹ 2,799.00</h5>
+                            <h6>(64%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-white-solid-puffer-jacket-hljk000710.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HLJK000296_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HLJK000296_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>Highlander</span>
+                        <p>Highlander Men White Solid Tailored Jacket — HLJK000296</p>
+                        <div class="mone">
+                            <h4>₹ 999</h4>
+                            <h5>₹ 2,799.00</h5>
+                            <h6>(64%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/highlander-men-white-solid-tailored-jacket-hljk000296.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img">
+                        <img src="product/jacket/imges/jacktes/HWJK000001_1.webp" alt="">
+                        <img src="product/jacket/imges/jacktes/HWJK000001_2.webp" alt="">
+                    </div>
+                    <div class="info">
+                        <span>WB by Highlander</span>
+                        <p>WB by Highlander Men Green Harry Potter Printed Varsity Jacket — HWJK000001</p>
+                        <div class="mone">
+                            <h4>₹ 2,699</h4>
+                            <h5>₹ 7,749.00</h5>
+                            <h6>(65%off)</h6>
+                        </div>
+                        <a class="quick-link" href="product/jacket/wb-by-highlander-men-green-harry-potter-printed-varsity-jacket-hwjk000001.html">View Details</a>
+                        <button class="btn1">Add To Cart</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="mobile-footer">
+
+        </div>
+        <div class="desktop-footer">
+
+        </div>
+    </footer>
+        <!-- Flickity loader: try CDN, fall back to local; only then load site scripts -->
+        <script>
+            (function(){
+                var cdn = 'https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js';
+                function loadScript(src, cb, attrs){
+                    var s = document.createElement('script');
+                    s.src = src;
+                    if (attrs) Object.keys(attrs).forEach(function(k){ s.setAttribute(k, attrs[k]); });
+                    s.onload = function(){ if (cb) cb(null); };
+                    s.onerror = function(){ if (cb) cb(new Error('failed to load '+src)); };
+                    document.head.appendChild(s);
+                }
+
+                function ensureFlickity(done){
+                    // Try CDN first
+                    loadScript(cdn, function(err){
+                        if (typeof Flickity !== 'undefined') return done();
+                        // Try local fallback
+                        loadScript('/js/flickity.pkgd.min.js', function(err2){
+                            // Continue either way; done() will allow site scripts to load even if Flickity still missing
+                            done();
+                        });
+                    });
+                    // As a safety, after 2s ensure we call done so site scripts are not blocked forever
+                    setTimeout(function(){ if (typeof Flickity === 'undefined') done(); }, 2000);
+                }
+
+                ensureFlickity(function(){
+                    // Once Flickity is available or fallback attempts finished, load site scripts in order
+                    loadScript('/js/main.js');
+                    loadScript('/js/products.js');
+                });
+            })();
+        </script>
+    <script>
+        // Handle login status and display user info
+        function updateLoginUI() {
+            const loggedIn = localStorage.getItem('site-logged-in');
+            const userEmail = localStorage.getItem('site-user-email');
+            const userName = localStorage.getItem('site-user-name');
+
+            const loginRegisterBefore = document.querySelectorAll('.login-register-before');
+            const loginRegisterAfter = document.querySelectorAll('.login-register-after');
+            const userGreeting = document.getElementById('userGreeting');
+            const userGreetingMobile = document.getElementById('userGreetingMobile');
+            const profileLink = document.getElementById('profileLink');
+            const profileNotLoggedIn = document.getElementById('profileNotLoggedIn');
+
+            if (loggedIn && userEmail) {
+                // Show logged-in menu
+                loginRegisterBefore.forEach(el => el.style.display = 'none');
+                loginRegisterAfter.forEach(el => el.style.display = 'block');
+
+                // Show profile link and hide placeholder
+                if (profileLink) profileLink.style.display = 'block';
+                if (profileNotLoggedIn) profileNotLoggedIn.style.display = 'none';
+
+                // Display user info
+                const displayName = userName || userEmail.split('@')[0];
+                const greeting = `👤 ${displayName}`;
+
+                if (userGreeting) userGreeting.textContent = greeting;
+                if (userGreetingMobile) userGreetingMobile.textContent = greeting;
+            } else {
+                // Show login/register menu
+                loginRegisterBefore.forEach(el => el.style.display = 'block');
+                loginRegisterAfter.forEach(el => el.style.display = 'none');
+
+                // Show placeholder and hide profile link
+                if (profileLink) profileLink.style.display = 'none';
+                if (profileNotLoggedIn) profileNotLoggedIn.style.display = 'block';
+            }
+        }
+
+        // Logout functionality
+        const logoutLinks = document.querySelectorAll('#Logout a');
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.clear();
+                updateLoginUI();
+                window.location.href = '/htmls/loginpage.html';
+            });
+        });
+
+        // Check login on page load
+        window.addEventListener('load', updateLoginUI);
+    </script>
+</body>
+
+</html>

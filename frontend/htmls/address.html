@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Add Address | StyleCore</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="stylesheet" href="../css/loginpage.css" />
+</head>
+<body>
+    <div class="login-page address-page">
+        <div class="right-side">
+            <div class="name-logo">
+                <h2>StyleCore</h2>
+                <img src="../imgs/12.webp" alt="StyleCore Logo">
+            </div>
+            <div id="about-website">
+                <p>Welcome to StyleCore - your place for good quality products at the right price. We try to keep everything fast and easy, from delivery to secure payments. Our aim is to give you trusted items, simple returns, and friendly support so your shopping experience stays smooth and stress-free.</p>
+            </div>
+        </div>
+        <div class="left-side">
+            <div class="card-login">
+                <h2>Add Delivery Address</h2>
+                <form id="address-form">
+                    <div class="email-login">
+                        <div class="login-email">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" name="fullName" required />
+                        </div>
+                        <div class="login-email">
+                            <label for="phone">Mobile:</label>
+                            <input type="tel" id="phone" name="phone" required />
+                        </div>
+                        <div class="login-email">
+                            <label for="pincode">Pincode:</label>
+                            <input type="text" id="pincode" name="pincode" required maxlength="6" />
+                        </div>
+                        <div class="login-email">
+                            <label for="state">State:</label>
+                            <input type="text" id="state" name="state" required />
+                        </div>
+                        <div class="login-email">
+                            <label for="district">District:</label>
+                            <input type="text" id="district" name="district" required />
+                        </div>
+                        <div class="login-email">
+                            <label for="city">City/PO:</label>
+                            <input type="text" id="city" name="city" required />
+                        </div>
+                        <div class="login-email">
+                            <label for="address1">Address Line:</label>
+                            <input type="text" id="address1" name="address1" required />
+                        </div>
+                        <div class="login-email">
+                            <label for="landmark">Landmark:</label>
+                            <input type="text" id="landmark" name="landmark" />
+                        </div>
+                        <button type="submit" class="submit">Save Address</button>
+                    </div>
+                </form>
+                <div id="address-message" style="color:#fff; margin-top:10px;"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/toast.js"></script>
+    <script src="../js/address.js"></script>
+    <script>document.body.classList.add('auth-fullpage');</script>
+</body>
+</html>
+
+

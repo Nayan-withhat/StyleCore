@@ -1,0 +1,509 @@
+<!DOCTYPE html><!-- Moved to .disabled/ownerpanel.html -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleCore | Owner Panel</title>
+    <link rel="stylesheet" href="../../css/ownerpanel.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .login-box h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+
+        .login-box p {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .owner-login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-error {
+            background-color: #fee;
+            color: #c00;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .login-btn {
+            padding: 12px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #5568d3;
+        }
+
+        /* Owner Panel */
+        .owner-panel {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f9fafb;
+        }
+
+        .owner-container {
+            width: 100%;
+        }
+
+        .owner-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .owner-header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .owner-header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+
+        .logout-btn {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: white;
+            color: #667eea;
+        }
+
+        /* Navigation */
+        .owner-nav {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 0;
+            border-bottom: 3px solid transparent;
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #111827;
+            border-bottom-color: #667eea;
+        }
+
+        /* Main Content */
+        .owner-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #111827;
+        }
+
+        /* Form Styling */
+        .product-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .size-checkboxes {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .size-checkboxes label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5568d3;
+        }
+
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: #111827;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+
+        /* Success Message */
+        .success-message {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* Image Preview */
+        .image-preview {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .image-preview > div {
+            width: 80px;
+            height: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #e5e7eb;
+            position: relative;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .owner-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .nav-list {
+                gap: 10px;
+            }
+
+            .nav-link {
+                margin-right: 10px;
+                padding: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen (Initially Shown) -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-box">
+                <h1>Owner Panel Login</h1>
+                <p>Enter your credentials to access the Owner Panel</p>
+                
+                <form id="ownerLoginForm" class="owner-login-form">
+                    <div class="form-group">
+                        <label for="ownerUsername">Username</label>
+                        <input type="text" id="ownerUsername" name="username" required placeholder="Enter username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ownerPassword">Password</label>
+                        <input type="password" id="ownerPassword" name="password" required placeholder="Enter password">
+                    </div>
+                    
+                    <div id="loginError" class="login-error" style="display: none;">
+                        Invalid username or password
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Owner Panel (Hidden Until Login) -->
+    <div id="ownerPanel" class="owner-panel" style="display: none;">
+        <div class="owner-container">
+            <!-- Header -->
+            <header class="owner-header">
+                <div>
+                    <h1>Owner Panel</h1>
+                    <p>Welcome to the StyleCore Owner Panel. Manage everything from here!</p>
+                </div>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Navigation Menu -->
+            <nav class="owner-nav">
+                <ul class="nav-list">
+                    <li><a href="#inventory" class="nav-link">Manage Inventory</a></li>
+                    <li><a href="#add-product" class="nav-link active">Add Product</a></li>
+                    <li><a href="#sales-reports" class="nav-link">Sales Reports</a></li>
+                    <li><a href="#settings" class="nav-link">Settings</a></li>
+                    <li><a href="#orders" class="nav-link">Orders</a></li>
+                    <li><a href="#customers" class="nav-link">Customers</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="owner-main">
+                <!-- Add Product Section -->
+                <section id="add-product" class="section active">
+                    <h2>Add New Product</h2>
+                    <form id="productForm" class="product-form">
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" name="productName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productCategory">Category *</label>
+                            <select id="productCategory" name="productCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="mens">Men's</option>
+                                <option value="womens">Women's</option>
+                                <option value="kids">Kids</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productPrice">Price (₹) *</label>
+                                <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productStock">Stock *</label>
+                                <input type="number" id="productStock" name="productStock" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productDescription">Description</label>
+                            <textarea id="productDescription" name="productDescription" rows="4" placeholder="Product description..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productSize">Available Sizes</label>
+                            <div class="size-checkboxes">
+                                <label><input type="checkbox" name="sizes" value="XS"> XS</label>
+                                <label><input type="checkbox" name="sizes" value="S"> S</label>
+                                <label><input type="checkbox" name="sizes" value="M"> M</label>
+                                <label><input type="checkbox" name="sizes" value="L"> L</label>
+                                <label><input type="checkbox" name="sizes" value="XL"> XL</label>
+                                <label><input type="checkbox" name="sizes" value="XXL"> XXL</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productImages">Product Images (Multiple) *</label>
+                            <input type="file" id="productImages" name="productImages" accept="image/*" multiple required>
+                            <p style="font-size: 0.9em; color: #666; margin-top: 5px;">You can select multiple images at once. Click to select, Ctrl+Click to select multiple.</p>
+                            <div id="imagePreview" class="image-preview" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                                <!-- Image previews will appear here -->
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+                            <button type="reset" class="btn btn-secondary">Clear</button>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="message success-message" style="display: none;">
+                        Product added successfully!
+                    </div>
+                </section>
+
+                <!-- Inventory Section -->
+                <section id="inventory" class="section">
+                    <h2>Manage Inventory</h2>
+                    <div id="productsList" class="products-list">
+                        <!-- Products will be displayed here -->
+                    </div>
+                    
+                </section>
+
+                <!-- Sales Reports Section -->
+                <section id="sales-reports" class="section">
+                    <h2>Sales Reports</h2>
+                    <p>Sales analytics and reports coming soon...</p>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="section">
+                    <h2>Store Settings</h2>
+                    <p>Store settings coming soon...</p>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="orders" class="section">
+                    <h2>Manage Orders</h2>
+                    <p>Orders management coming soon...</p>
+                </section>
+
+                <!-- Customers Section -->
+                <section id="customers" class="section">
+                    <h2>Manage Customers</h2>
+                    <p>Customers management coming soon...</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../js/ownerpanel.js"></script>
+</body>
+</html>

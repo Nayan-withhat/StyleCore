@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | StyleCore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-user"></i> My Profile</h1>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div class="profile-tabs">
+            <button class="tab-btn active" data-tab="profile"><i class="fas fa-user"></i> Profile</button>
+            <button class="tab-btn" data-tab="orders"><i class="fas fa-box"></i> Orders</button>
+            <button class="tab-btn" data-tab="addresses"><i class="fas fa-map-marker-alt"></i> Addresses</button>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profile" class="tab-content active">
+            <div class="card">
+                <h2 style="margin-bottom: 20px;">Personal Information</h2>
+                <div id="profileView">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+                </div>
+            </div>
+            <!-- Edit Profile Modal -->
+            <div id="editProfileModal" class="modal-backdrop modal-edit">
+                <div class="modal">
+                    <h2 class="modal-title">Edit Profile</h2>
+                    <form id="editProfileForm">
+                        <div class="form-group">
+                            <label for="editName">Full Name:</label>
+                            <input type="text" id="editName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email:</label>
+                            <input type="email" id="editEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPhone">Phone:</label>
+                            <input type="tel" id="editPhone">
+                        </div>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-save">Save Changes</button>
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders" class="tab-content">
+            <div class="card">
+                <h2 style="margin-bottom: 20px;">Your Orders</h2>
+                <div id="ordersView">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Addresses Tab -->
+        <div id="addresses" class="tab-content">
+            <div class="card">
+                <h2 style="margin-bottom: 20px;">Saved Addresses</h2>
+                <button id="addAddressBtn" class="btn btn-save" style="margin-bottom: 20px;">
+                    <i class="fas fa-plus"></i> Add New Address
+                </button>
+                <div id="addressesView">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+                </div>
+            </div>
+            <!-- Add/Edit Address Modal -->
+            <div id="addressModal" class="modal-backdrop modal-address">
+                <div class="modal">
+                    <h2 class="modal-title">Add / Edit Address</h2>
+                    <p class="modal-subtitle">Enter delivery address details for shipping.</p>
+                    <form id="addressForm">
+                        <div class="form-group">
+                            <label for="addressLabel">Label (Home/Office/Other):</label>
+                            <select id="addressLabel" required
+                                style="width:100%; padding:10px; background:#222; border:1px solid #444; border-radius:5px; color:#fff;">
+                                <option value="">Select a label</option>
+                                <option value="Home">Home</option>
+                                <option value="Office">Office</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressName">Full Name:</label>
+                            <input type="text" id="addressName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressPhone">Phone:</label>
+                            <input type="tel" id="addressPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressPincode">Pincode:</label>
+                            <input type="text" id="addressPincode" placeholder="382027" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressCity">City:</label>
+                            <input type="text" id="addressCity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressState">State:</label>
+                            <input type="text" id="addressState" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressStreet">Address:</label>
+                            <input type="text" id="addressStreet" placeholder="Street address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressCountry">Country:</label>
+                            <input type="text" id="addressCountry" value="India" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-save">Save Address</button>
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="../js/profile.js" defer></script>
+</body>
+
+</html>

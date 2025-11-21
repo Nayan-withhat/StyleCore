@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>%%TITLE%% - StyleCore</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link href="/css/menu-new.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* minimal tweaks to ensure template displays nicely */
+        body { font-family: 'Poppins', sans-serif; background-color: #f9fafb; color: #111827; }
+        .product-detail-container { max-width: 1200px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .main-image { width: 100%; height: 500px; background-color: #e5e7eb; border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+        .main-image img { width:100%; height:100%; object-fit:cover }
+        .thumbnail-images { display:flex; gap:10px; margin-top:12px }
+        .thumbnail { width:80px; height:80px; overflow:hidden; border-radius:6px; cursor:pointer; border:2px solid transparent }
+        .thumbnail.active { border-color:#111827 }
+        .product-title { font-size:32px; font-weight:700; margin:0 }
+        .product-price { font-size:28px; font-weight:700; }
+        .compare-price { font-size:16px; color:#6b7280; text-decoration:line-through; margin-left:10px }
+        @media (max-width:768px){ .product-detail-container { grid-template-columns:1fr; } .main-image{height:300px} }
+    </style>
+</head>
+<body>
+    <nav><!-- minimal nav fallback -->
+        <a href="/">Home</a>
+    </nav>
+
+    <div class="product-detail-container">
+        <div>
+            <div class="main-image" id="mainImageWrap"><img id="mainImage" src="" alt=""></div>
+            <div class="thumbnail-images" id="thumbnailContainer"></div>
+        </div>
+        <div>
+            <p class="product-category" id="productCategory"></p>
+            <h1 class="product-title" id="productTitle">%%TITLE%%</h1>
+            <div style="display:flex; align-items:baseline; gap:8px;">
+                <div class="product-price" id="productPrice">₹%%PRICE%%</div>
+                <div class="compare-price" id="productCompare">₹%%COMPARE_PRICE%%</div>
+            </div>
+            <p id="productDescription">%%DESCRIPTION%%</p>
+            <div id="stockInfo">Stock: %%STOCK%%</div>
+            <div style="margin-top:16px;">
+                <button id="addToCartBtn" class="add-to-cart-btn">Add to cart</button>
+                <a id="buyNowBtn" class="checkout-btn" href="#">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Embedded product data
+        const PRODUCT = %%PRODUCT_JSON%%;
+
+        // Populate images
+        const mainImage = document.getElementById('mainImage');
+        const thumbContainer = document.getElementById('thumbnailContainer');
+        if (PRODUCT.images && PRODUCT.images.length) {
+            mainImage.src = PRODUCT.images[0];
+            PRODUCT.images.forEach((src, idx) => {
+                const d = document.createElement('div'); d.className = 'thumbnail' + (idx===0? ' active':'');
+                d.innerHTML = `<img src="${src}" alt="">`;
+                d.addEventListener('click', () => { document.querySelectorAll('.thumbnail').forEach(t=>t.classList.remove('active')); d.classList.add('active'); mainImage.src = src; });
+                thumbContainer.appendChild(d);
+            });
+        }
+
+        // Simple add to cart using localStorage
+        document.getElementById('addToCartBtn').addEventListener('click', ()=>{
+            const cart = JSON.parse(localStorage.getItem('site-cart')||'[]');
+            cart.push({ id: PRODUCT.id || PRODUCT.sku || PRODUCT._id, title: PRODUCT.title, price: PRODUCT.price, qty: 1 });
+            localStorage.setItem('site-cart', JSON.stringify(cart));
+            alert('Added to cart');
+        });
+
+        // Buy now (redirect to cart/checkout)
+        document.getElementById('buyNowBtn').addEventListener('click', ()=>{
+            window.location.href = '/htmls/checkout.html';
+        });
+    </script>
+</body>
+</html>

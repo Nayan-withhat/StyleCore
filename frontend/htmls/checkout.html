@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - StyleCore</title>
+    <link href="../css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/menu.css">
+    <link href="../css/menu-new.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+        }
+        .checkout-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+        .checkout-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        .form-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .order-summary {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .order-summary h3 {
+            margin-top: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .order-summary .summary-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-weight: 400; /* normal font */
+        }
+        .order-summary .summary-item.total {
+            font-weight: 700; /* keep total a bit more prominent */
+        }
+        .order-summary .summary-item img {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: #f3f4f6;
+        }
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .payment-methods {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="mobile-nav">
+            <div class="menu">
+                <div class="menu-icons">
+                    <i class="fa-solid fa-bars menu-open"></i>
+                    <i class="fa-solid fa-x menu-close"></i>
+                </div>
+                <span>Menu</span>
+            </div>
+            <div class="center">
+                <span>StyleCore</span>
+            </div>
+            <div class="rightside">
+                <a href="/"><i class="fa-solid fa-home" style="color: #000000;"></i></a>
+            </div>
+        </div>
+        <div class="desktop-nav">
+            <div class="pfp-name">
+                <span>StyleCore</span>
+            </div>
+            <div class="other">
+                <ul>
+                    <li><a href="/"><i class="fa-solid fa-home" style="color: #000000;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="checkout-container">
+        <div class="checkout-form">
+            <form id="checkoutForm">
+                <!-- Shipping Address -->
+                    <div id="addressSelector" class="form-section">
+                        <h2>Choose Shipping Address</h2>
+                        <div id="savedAddressesList">
+                            <p style="color:#666;">Loading saved addresses...</p>
+                        </div>
+                        <div style="margin-top:12px;">
+                            <label><input type="radio" name="addressChoice" value="new" checked> Use a new address</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                    <h2>Shipping Address</h2>
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State *</label>
+                            <input type="text" id="state" name="state" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pincode">Pincode *</label>
+                            <input type="text" id="pincode" name="pincode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <input type="text" id="country" name="country" value="India" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" id="saveAddress"> Save this address for future orders</label>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="form-section">
+                    <h2>Payment Method</h2>
+                    <div class="payment-methods">
+                        <button type="button" class="payment-method active" data-method="razorpay">
+                            <i class="fa-solid fa-credit-card"></i> Razorpay
+                        </button>
+                    </div>
+                    <input type="hidden" id="paymentMethod" value="razorpay">
+                </div>
+
+                <!-- Place Order Button -->
+                <button type="submit" class="place-order-btn">Place Order</button>
+            </form>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="cartItems">
+                <!-- Cart items will be displayed here -->
+            </div>
+            <hr>
+            <div class="summary-item">
+                <span>Subtotal:</span>
+                <span id="subtotal">₹0</span>
+            </div>
+            <hr>
+            <div class="summary-item">
+                <span>Shipping:</span>
+                <span id="shipping">Free</span>
+            </div>
+            <hr>
+            <div class="summary-item">
+                <span>Tax (10%):</span>
+                <span id="tax">₹0</span>
+            </div>
+            <hr>
+            <div class="summary-item total">
+                <span>Total:</span>
+                <span id="total">₹0</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="../js/api.js"></script>
+    <script>
+        let cart = [];
+        let selectedPayment = 'razorpay';
+
+        async function loadCart() {
+            try {
+                // support both token keys
+                let token = localStorage.getItem('site-token') || localStorage.getItem('site-access-token');
+                if (!token) {
+                    // fallback to localStorage cart
+                    const saved = localStorage.getItem('site-cart');
+                    cart = saved ? JSON.parse(saved) : [];
+                    updateOrderSummary();
+                    return;
+                }
+
+                const response = await fetch('/api/cart', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    cart = data.items || [];
+                    updateOrderSummary();
+                } else if (response.status === 401) {
+                    // token invalid -> redirect to login
+                    const next = encodeURIComponent('/htmls/checkout.html');
+                    window.location.href = `/htmls/loginpage.html?next=${next}`;
+                } else {
+                    // other error: fallback to local cart
+                    const saved = localStorage.getItem('site-cart');
+                    cart = saved ? JSON.parse(saved) : [];
+                    updateOrderSummary();
+                }
+            } catch (error) {
+                console.error('Error loading cart:', error);
+                const saved = localStorage.getItem('site-cart');
+                cart = saved ? JSON.parse(saved) : [];
+                updateOrderSummary();
+            }
+        }
+
+        function updateOrderSummary() {
+            const cartContainer = document.getElementById('cartItems');
+            cartContainer.innerHTML = '';
+            let subtotal = 0;
+                cart.forEach(item => {
+                    const price = item.product?.price || item.price || 0;
+                    const qty = item.quantity || 1;
+                    const itemTotal = price * qty;
+                    subtotal += itemTotal;
+
+                    // Determine image source with fallbacks
+                    let imgSrc = '';
+                    if (item.product && item.product.image) imgSrc = item.product.image;
+                    else if (item.image) imgSrc = item.image;
+                    else if (item.product && Array.isArray(item.product.images) && item.product.images.length) imgSrc = item.product.images[0];
+                    // If imgSrc looks like a bare filename, prefix relative path to frontend images
+                    if (imgSrc && !/^https?:\/\//i.test(imgSrc) && !imgSrc.startsWith('/') && !imgSrc.startsWith('../') && !imgSrc.startsWith('./')) {
+                        imgSrc = `../${imgSrc}`; // try a relative prefix
+                    }
+
+                    // Inline SVG placeholder (grey box) used when image fails
+                    const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial, Helvetica, sans-serif" font-size="12">No Image</text></svg>');
+
+                    const div = document.createElement('div');
+                    div.className = 'summary-item';
+
+                    const title = item.product?.title || item.name || 'Product';
+                    const priceHtml = `₹${Number(price).toFixed(2)} x ${qty}`;
+                    const totalHtml = `₹${Number(itemTotal).toFixed(2)}`;
+
+                    div.innerHTML = `
+                        <div style="display:flex; align-items:center; gap:12px; flex:1;">
+                            <img src="${imgSrc || placeholder}" alt="${title}" onerror="this.onerror=null;this.src='${placeholder}';" />
+                            <div style="flex:1">
+                                <div style="font-weight:600">${title}</div>
+                                <div style="font-size:13px; color:#666">${priceHtml}</div>
+                            </div>
+                        </div>
+                        <div style="font-weight:700; min-width:80px; text-align:right">${totalHtml}</div>
+                    `;
+
+                    cartContainer.appendChild(div);
+                });
+
+            const tax = Math.round(subtotal * 0.1);
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').textContent = `₹${Number(subtotal).toFixed(2)}`;
+            document.getElementById('tax').textContent = `₹${Number(tax).toFixed(2)}`;
+            document.getElementById('total').textContent = `₹${Number(total).toFixed(2)}`;
+        }
+
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.payment-method').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedPayment = btn.dataset.method;
+                document.getElementById('paymentMethod').value = selectedPayment;
+            });
+        });
+
+        // Pre-fill email and name
+        window.addEventListener('load', () => {
+            loadCart();
+            const userEmail = localStorage.getItem('site-user-email');
+            const userName = localStorage.getItem('site-user-name');
+            
+            if (userEmail) document.getElementById('email').value = userEmail;
+            if (userName) document.getElementById('fullName').value = userName;
+        });
+
+        // Form submission
+        document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value,
+                country: document.getElementById('country').value,
+                paymentMethod: selectedPayment
+            };
+
+            try {
+                const token = localStorage.getItem('site-access-token') || localStorage.getItem('site-token');
+                
+                // Calculate total
+                const subtotal = cart.reduce((sum, item) => sum + ((item.product?.price || 0) * item.quantity), 0);
+                const tax = Math.round(subtotal * 0.1);
+                const total = subtotal + tax;
+
+                // Create order
+                const orderResponse = await fetch('/api/orders/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        items: cart,
+                        shippingAddress: formData,
+                        total: total,
+                        paymentMethod: selectedPayment
+                    })
+                });
+
+                if (!orderResponse.ok) {
+                    throw new Error('Failed to create order');
+                }
+
+                const order = await orderResponse.json();
+                // Helper: save address to localStorage if user checked the box
+                function saveAddressIfChecked() {
+                    try {
+                        const save = document.getElementById('saveAddress');
+                        if (save && save.checked) {
+                            const a = {
+                                fullName: document.getElementById('fullName').value,
+                                email: document.getElementById('email').value,
+                                phone: document.getElementById('phone').value,
+                                address: document.getElementById('address').value,
+                                city: document.getElementById('city').value,
+                                state: document.getElementById('state').value,
+                                pincode: document.getElementById('pincode').value,
+                                country: document.getElementById('country').value
+                            };
+                            const arr = JSON.parse(localStorage.getItem('site-addresses') || '[]');
+                            arr.push(a);
+                            localStorage.setItem('site-addresses', JSON.stringify(arr));
+                            setTimeout(loadSavedAddresses, 300);
+                        }
+                    } catch (e) { console.warn('Could not save address', e); }
+                }
+
+                // Create a Razorpay order on the backend so we can open the checkout securely
+                const paymentCreateResp = await fetch('/api/payments/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ amount: total })
+                });
+
+                if (!paymentCreateResp.ok) throw new Error('Could not initialize payment');
+
+                const paymentPayload = await paymentCreateResp.json();
+                // paymentPayload: { order: { id, ... }, key_id }
+                const razorOrder = paymentPayload.order;
+                const keyId = paymentPayload.key_id || paymentPayload.key || 'rzp_test_key';
+
+                const options = {
+                    key: keyId,
+                    amount: razorOrder.amount, // in paise
+                    currency: razorOrder.currency || 'INR',
+                    name: 'StyleCore',
+                    description: `Order #${order._id}`,
+                    order_id: razorOrder.id,
+                    handler: async function(response) {
+                        // Verify payment and update order in backend
+                        const verifyResponse = await fetch('/api/payments/verify', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_signature: response.razorpay_signature,
+                                orderId: order._id
+                            })
+                        });
+
+                        if (verifyResponse.ok) {
+                            // Save address after successful payment
+                            saveAddressIfChecked();
+
+                            // Clear cart locally and on server (if a server-side cart exists)
+                            try {
+                                const cartId = localStorage.getItem('site-cart-id');
+                                if (cartId) {
+                                    await fetch('/api/cart/clear', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cartId }) });
+                                }
+                            } catch (e) { console.warn('Could not clear server cart', e); }
+                            try { localStorage.removeItem('site-cart'); localStorage.removeItem('site-cart-id'); } catch (e) {}
+
+                            alert('Payment successful! Your order has been placed.');
+                            window.location.href = `/htmls/verify.html?orderId=${order._id}`;
+                        } else {
+                            alert('Payment verification failed');
+                        }
+                    },
+                    prefill: {
+                        name: formData.fullName,
+                        email: formData.email,
+                        contact: formData.phone
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = error.message || 'An error occurred. Please try again.';
+            }
+        });
+
+        // Saved addresses handling
+        function loadSavedAddresses() {
+            const list = document.getElementById('savedAddressesList');
+            list.innerHTML = '';
+            try {
+                const raw = localStorage.getItem('site-addresses');
+                const arr = raw ? JSON.parse(raw) : [];
+                if (!Array.isArray(arr) || arr.length === 0) {
+                    list.innerHTML = `<p style="color:#666;">No saved addresses. Use the form below to add one.</p>`;
+                    return;
+                }
+                arr.forEach((a, idx) => {
+                    const id = `addr_${idx}`;
+                    const div = document.createElement('div');
+                    div.style.padding = '10px 0';
+                    div.innerHTML = `
+                        <label style="display:flex; align-items:flex-start; gap:10px;">
+                            <input type="radio" name="addressChoice" value="saved_${idx}" data-idx="${idx}">
+                            <div>
+                                <strong>${a.fullName}</strong><br>
+                                ${a.address.replace(/\n/g,'<br>')}<br>
+                                ${a.city}, ${a.state} - ${a.pincode}<br>
+                                ${a.phone}
+                            </div>
+                        </label>
+                    `;
+                    list.appendChild(div);
+                });
+            } catch (e) {
+                list.innerHTML = `<p style="color:#c00;">Could not load saved addresses.</p>`;
+            }
+        }
+
+        // When user selects a saved address populate the form
+        document.getElementById('addressSelector').addEventListener('change', (e) => {
+            const val = e.target.value;
+            if (!val) return;
+            if (val === 'new') {
+                // clear or allow editing
+                return;
+            }
+            if (val.startsWith('saved_')) {
+                const idx = Number(val.split('_')[1]);
+                try {
+                    const arr = JSON.parse(localStorage.getItem('site-addresses') || '[]');
+                    const a = arr[idx];
+                    if (a) {
+                        document.getElementById('fullName').value = a.fullName || '';
+                        document.getElementById('email').value = a.email || '';
+                        document.getElementById('phone').value = a.phone || '';
+                        document.getElementById('address').value = a.address || '';
+                        document.getElementById('city').value = a.city || '';
+                        document.getElementById('state').value = a.state || '';
+                        document.getElementById('pincode').value = a.pincode || '';
+                        document.getElementById('country').value = a.country || 'India';
+                    }
+                } catch (e) { console.warn(e); }
+            }
+        });
+
+        // Initialize saved addresses UI
+        loadSavedAddresses();
+
+        // previous click-based save removed; addresses are saved only after successful order/payment
+    </script>
+</body>
+</html>

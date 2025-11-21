@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleCore | Owner Panel</title>
+    <!-- CSS disabled per user request -->
+    <link rel="stylesheet" href="../../css/ownerpanel.css">
+</head>
+<body>
+    <!-- Login Screen (Initially Shown) -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-box">
+                <h1>Owner Panel Login</h1>
+                <p>Enter your credentials to access the Owner Panel</p>
+                
+                <form id="ownerLoginForm" class="owner-login-form">
+                    <div class="form-group">
+                        <label for="ownerUsername">Username</label>
+                        <input type="text" id="ownerUsername" name="username" required placeholder="Enter username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ownerPassword">Password</label>
+                        <input type="password" id="ownerPassword" name="password" required placeholder="Enter password">
+                    </div>
+                    
+                    <div id="loginError" class="login-error" style="display: none;">
+                        Invalid username or password
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Owner Panel (Hidden Until Login) -->
+    <div id="ownerPanel" class="owner-panel" style="display: none;">
+        <div class="owner-container">
+            <!-- Header -->
+            <header class="owner-header">
+                <h1>Owner Panel</h1>
+                <p>Welcome to the StyleCore Owner Panel. Manage everything from here!</p>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Navigation Menu -->
+            <nav class="owner-nav">
+                <ul class="nav-list">
+                    <li><a href="#inventory" class="nav-link">Manage Inventory</a></li>
+                    <li><a href="#add-product" class="nav-link active">Add Product</a></li>
+                    <li><a href="#sales-reports" class="nav-link">Sales Reports</a></li>
+                    <li><a href="#settings" class="nav-link">Settings</a></li>
+                    <li><a href="#orders" class="nav-link">Orders</a></li>
+                    <li><a href="#customers" class="nav-link">Customers</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="owner-main">
+                <!-- Add Product Section -->
+                <section id="add-product" class="section active">
+                    <h2>Add New Product</h2>
+                    <form id="productForm" class="product-form">
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" name="productName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productCategory">Category *</label>
+                            <select id="productCategory" name="productCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="mens">Men's</option>
+                                <option value="womens">Women's</option>
+                                <option value="kids">Kids</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productPrice">Price (₹) *</label>
+                                <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productStock">Stock *</label>
+                                <input type="number" id="productStock" name="productStock" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productDescription">Description</label>
+                            <textarea id="productDescription" name="productDescription" rows="4" placeholder="Product description..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productSize">Available Sizes</label>
+                            <div class="size-checkboxes">
+                                <label><input type="checkbox" name="sizes" value="XS"> XS</label>
+                                <label><input type="checkbox" name="sizes" value="S"> S</label>
+                                <label><input type="checkbox" name="sizes" value="M"> M</label>
+                                <label><input type="checkbox" name="sizes" value="L"> L</label>
+                                <label><input type="checkbox" name="sizes" value="XL"> XL</label>
+                                <label><input type="checkbox" name="sizes" value="XXL"> XXL</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productImages">Product Images (Multiple) *</label>
+                            <input type="file" id="productImages" name="productImages" accept="image/*" multiple required>
+                            <p style="font-size: 0.9em; color: #666; margin-top: 5px;">You can select multiple images at once. Click to select, Ctrl+Click to select multiple.</p>
+                            <div id="imagePreview" class="image-preview" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                                <!-- Image previews will appear here -->
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+                            <button type="reset" class="btn btn-secondary">Clear</button>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="message success-message" style="display: none;">
+                        Product added successfully!
+                    </div>
+                </section>
+
+                <!-- Inventory Section -->
+                <section id="inventory" class="section">
+                    <h2>Manage Inventory</h2>
+                    <div id="productsList" class="products-list">
+                        <!-- Products will be displayed here -->
+                    </div>
+                </section>
+
+                <!-- Sales Reports Section -->
+                <section id="sales-reports" class="section">
+                    <h2>Sales Reports</h2>
+                    <p>Sales analytics and reports coming soon...</p>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="section">
+                    <h2>Store Settings</h2>
+                    <p>Store settings coming soon...</p>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="orders" class="section">
+                    <h2>Manage Orders</h2>
+                    <p>Orders management coming soon...</p>
+                </section>
+
+                <!-- Customers Section -->
+                <section id="customers" class="section">
+                    <h2>Manage Customers</h2>
+                    <p>Customers management coming soon...</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript disabled per user request -->
+    <script src="../../js/ownerpanel.js"></script>
+</body>
+</html>
