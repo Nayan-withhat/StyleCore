@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: stylecore-backend
+    env: node
+    plan: free
+    branch: main
+    buildCommand: "cd backend && npm ci"
+    startCommand: "npm run start"
+    rootDirectory: backend
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add sensitive values in Render dashboard as secrets (do NOT commit them here)
+      # - key: FIREBASE_SERVICE_ACCOUNT_JSON
+      #   value: "<set-in-render-dashboard>"
