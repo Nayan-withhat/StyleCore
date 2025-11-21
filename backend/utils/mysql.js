@@ -3,13 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 
-let mysql;
-let sqlite3;
+let mysql = null;
 try { mysql = require('mysql2/promise'); } catch (e) { mysql = null; }
-try { sqlite3 = require('better-sqlite3'); } catch (e) { sqlite3 = null; }
 
 let pool = null;
-let isSqlite = false;
 
 async function getPool() {
 	if (pool) return pool;
@@ -34,28 +31,44 @@ async function getPool() {
 			connectionLimit: 10,
 			queueLimit: 0
 		});
-		isSqlite = false;
+		pool.__sqlite = false;
 		return pool;
 	}
 
-	// Fallback: use SQLite (file-based) if better-sqlite3 is available
+	// Fallback: try lazy-require better-sqlite3 (do not require at top-level)
+	let sqlite3 = null;
+	try {
+		// This may throw if module not installed or binary incompatible
+		sqlite3 = require('better-sqlite3');
+	} catch (err) {
+		sqlite3 = null;
+	}
+
 	if (sqlite3) {
 		const dataDir = path.join(__dirname, '..', 'data');
 		if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 		const dbPath = path.join(dataDir, 'stylecore.sqlite');
-		const db = new sqlite3(dbPath);
+		let db;
+		try {
+			db = new sqlite3(dbPath);
+		} catch (err) {
+			// If native binary fails to load (invalid ELF or similar), bail out gracefully
+			console.warn('better-sqlite3 failed to initialize:', err.message);
+			return null;
+		}
 
 		// simple wrapper to mimic mysql2 promise interface: execute(sql, params)
 		pool = {
 			__sqlite: true,
+			_execute_internal: db,
 			execute: async (sql, params) => {
-				// Normalize params (mysql2 uses namedPlaceholders; here we accept array or object)
 				params = params || [];
 				const stmt = db.prepare(sql);
 				const trimmed = sql.trim().toUpperCase();
 				try {
 					if (trimmed.startsWith('SELECT')) {
-						const rows = stmt.all(params);
+						const rows = Array.isArray(params) && params.length ? stmt.all(...(Array.isArray(params) ? [params] : [params])) : stmt.all(params);
+						// return [rows] to mirror mysql2
 						return [rows];
 					} else {
 						const info = stmt.run(params);
@@ -77,7 +90,6 @@ async function getPool() {
 			},
 			close: () => db.close()
 		};
-		isSqlite = true;
 		return pool;
 	}
 
@@ -127,8 +139,9 @@ exports.ensureSchema = async function ensureSchema() {
 				FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 		`);
-
-		// Products table (basic schema)
+		// products, cart_items, orders ... same as before
+		// (kept identical to your original schema)
+		// --- Products table (basic schema)
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS products (
 				id VARCHAR(64) PRIMARY KEY,
@@ -147,8 +160,6 @@ exports.ensureSchema = async function ensureSchema() {
 				INDEX idx_category (category)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 		`);
-
-		// Cart items table
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS cart_items (
 				id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -162,8 +173,6 @@ exports.ensureSchema = async function ensureSchema() {
 				FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 		`);
-
-		// Orders table
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS orders (
 				id VARCHAR(64) PRIMARY KEY,
@@ -183,9 +192,7 @@ exports.ensureSchema = async function ensureSchema() {
 		`);
 	} else {
 		// SQLite schema (file-based, free)
-		// Enable foreign keys pragma
 		await p.execute(`PRAGMA foreign_keys = ON;`);
-
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS users (
 				id TEXT PRIMARY KEY,
@@ -205,7 +212,6 @@ exports.ensureSchema = async function ensureSchema() {
 				updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 			);
 		`);
-
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS addresses (
 				id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -222,7 +228,6 @@ exports.ensureSchema = async function ensureSchema() {
 				FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 			);
 		`);
-
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS products (
 				id TEXT PRIMARY KEY,
@@ -240,10 +245,7 @@ exports.ensureSchema = async function ensureSchema() {
 				updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 			);
 		`);
-		// create index on category
 		await p.execute(`CREATE INDEX IF NOT EXISTS idx_category ON products(category);`);
-
-		// Cart items table (SQLite)
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS cart_items (
 				id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -256,8 +258,6 @@ exports.ensureSchema = async function ensureSchema() {
 				FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 			);
 		`);
-
-		// Orders table (SQLite)
 		await p.execute(`
 			CREATE TABLE IF NOT EXISTS orders (
 				id TEXT PRIMARY KEY,
@@ -291,7 +291,6 @@ exports.upsertUser = async function upsertUser({ id, name, email, phone, isPhone
 				is_phone_verified = VALUES(is_phone_verified)
 		`, { id, name: name || null, email, phone: phone || null, isPhoneVerified: isPhoneVerified ? 1 : 0 });
 	} else {
-		// SQLite upsert
 		await p.execute(
 			`INSERT INTO users (id, name, email, phone, is_phone_verified)
 			 VALUES (?, ?, ?, ?, ?)
@@ -304,6 +303,7 @@ exports.upsertUser = async function upsertUser({ id, name, email, phone, isPhone
 	}
 };
 
+// ... rest of exports unchanged (keep your existing helper functions)
 exports.insertAddress = async function insertAddress(userId, address) {
 	const p = await getPool();
 	if (!p) return;
@@ -337,7 +337,6 @@ function safeParseTokens(val, isSqlite) {
 	if (!val) return [];
 	try {
 		if (isSqlite) return JSON.parse(val);
-		// mysql2 may return as object already
 		if (typeof val === 'string') return JSON.parse(val);
 		return val;
 	} catch (e) { return []; }
@@ -528,9 +527,6 @@ exports.query = async function query(sql, params) {
 		return rows;
 	} else {
 		const rows = await p.execute(sql, params || []);
-		// sqlite wrapper returns [rows] for execute, or direct rows depending on implementation
 		return (rows && rows[0]) ? rows[0] : rows;
 	}
 };
-
-
