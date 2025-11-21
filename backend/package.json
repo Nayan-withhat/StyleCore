@@ -4,8 +4,8 @@
   "description": "Backend for StyleCore - Node/Express/SQLite or MySQL",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node start.js",
+    "dev": "node --watch server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
